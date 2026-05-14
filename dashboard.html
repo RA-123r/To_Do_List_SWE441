@@ -1,0 +1,31 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - To-Do List</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+</head>
+<body>
+    <button id="logoutBtn">Logout</button>
+
+    <div class="container">
+        <header>
+            <h2 id="welcomeText">Organize your tasks! </h2>
+            <p>Welcome, <span id="userNameDisplay">User</span>!</p>
+        </header>
+
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Write a new task...">
+            <button id="addTaskBtn">Add Task</button>
+        </div>
+
+        <ul id="taskList">
+            </ul>
+
+        <div id="footerActions">
+            </div>
+    </div>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>
