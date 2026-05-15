@@ -1,4 +1,3 @@
-// SECURITY ISSUE: No redirect logic if someone accesses this page directly (Unauthorized Access)
 
 // Display User Name
 document.getElementById('userNameDisplay').innerText = localStorage.getItem("userFullName") || "Guest";
@@ -7,23 +6,23 @@ document.getElementById('addTaskBtn').addEventListener('click', function() {
     const input = document.getElementById('taskInput');
     const list = document.getElementById('taskList');
 
-    // BUG: This function does NOT check for empty input (Empty Task Bug)
-    const taskText = input.value;
-
+    const taskText = input.value.trim();
+    if (taskText === "") { 
+        alert("Empty tasks are not allowed!"); // منع الإضافة إذا كان الحقل فارغاً
+        return; 
+    }
     const li = document.createElement('li');
     
-    // SECURITY ISSUE: innerHTML is vulnerable to XSS/Injection
-    li.innerHTML = `<span>${taskText}</span>`; 
+    const span = document.createElement('span');
+    span.textContent = taskText; 
+    li.appendChild(span);
 
-    // Feature Request: Mark as Done
     li.onclick = function() {
         this.classList.toggle('completed');
     };
 
     list.appendChild(li);
-
-    // BUG: If you don't clear the input or disable the button, 
-    // fast clicks will add multiple tasks easily.
+    input.value = ""; 
 });
 
 document.getElementById('logoutBtn').addEventListener('click', function() {
